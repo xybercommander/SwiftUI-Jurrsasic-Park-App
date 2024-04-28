@@ -10,25 +10,24 @@ import SwiftUI
 struct ContentView: View {
     let predators = Predators()
     @State var searchText = ""
+    @State var alphabeticalSort = false
+    @State var currentPredatorType = PredatorType.all
     
     //MARK: Logic for filtering Predators
+    // filter first
+    // sort second
+    // search third
     var filteredDinos: [ApexPredator] {
-        if searchText.isEmpty {
-            return predators.apexPredators
-        } else {
-            return predators.apexPredators.filter { predator in
-                predator.name.localizedCaseInsensitiveContains(searchText)
-            }
-        }
+        predators.filter(by: currentPredatorType)
+        predators.sort(by: alphabeticalSort)
+        return predators.search(for: searchText)
     }
     
     var body: some View {
         NavigationStack {
             List(filteredDinos) { predator in
                 NavigationLink {
-                    Image(predator.image)
-                        .resizable()
-                        .scaledToFit()
+                    PredatorDetail()
                 } label: {
                     HStack {
                         // Dinosaur Image
@@ -59,6 +58,39 @@ struct ContentView: View {
             .searchable(text: $searchText)
             .autocorrectionDisabled()
             .animation(.default, value: searchText) // animates the filtering
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        //MARK: Adding animation to the sorting
+                        withAnimation {
+                            alphabeticalSort.toggle()
+                        }
+                    } label: {
+                        Image(systemName: alphabeticalSort 
+                              ? "film"
+                              : "textformat")
+                            .foregroundColor(.white)
+                            .symbolEffect(.bounce, value: alphabeticalSort) // Enables animation when we tap the button
+                            .sensoryFeedback(.success, trigger: alphabeticalSort)
+                    }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Picker("Filter", selection: $currentPredatorType.animation()) {
+                            ForEach(PredatorType.allCases) { type in
+                                Label(
+                                    type.rawValue.capitalized,
+                                    systemImage: type.icon
+                                )
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "slider.horizontal.3")
+                            .foregroundColor(.white)
+                    }
+                }
+            }
         }
         .preferredColorScheme(.dark)
     }

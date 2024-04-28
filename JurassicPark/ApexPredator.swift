@@ -27,21 +27,42 @@ struct ApexPredator: Decodable, Identifiable {
         let movie: String
         let sceneDescription: String
     }
+}
+
+enum PredatorType: String, Decodable, CaseIterable, Identifiable {
+    case all
+    case land
+    case sea
+    case air
     
-    enum PredatorType: String, Decodable {
-        case land
-        case sea
-        case air
-        
-        var background: Color {
-            switch self {
-            case .land:
-                .brown
-            case .sea:
-                .teal
-            case .air:
-                .blue
-            }
+    //MARK: Always to give a struct ID when using Identifiable protocol
+    var id: PredatorType {
+        self
+    }
+    
+    var background: Color {
+        switch self {
+        case .land:
+            .brown
+        case .sea:
+            .teal
+        case .air:
+            .blue
+        case .all:
+            .black
+        }
+    }
+    
+    var icon: String {
+        switch self {
+        case .all:
+            "square.stack.3d.up.fill"
+        case .land:
+            "leaf.fill"
+        case .sea:
+            "wind"
+        case .air:
+            "drop.fill"
         }
     }
 }
