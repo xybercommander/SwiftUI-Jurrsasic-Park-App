@@ -55,15 +55,36 @@ struct PredatorDetail: View {
                     
                     //MARK: Current Location
                     //MARK: Map
-                    Map(position: $position) {
-                        Annotation(
-                            predator.name,
-                            coordinate: predator.location,
-                            content: <#T##() -> View#>
-                        )
+                    NavigationLink {
+                        PredatorMap(position: .camera(MapCamera(centerCoordinate: predator.location, distance: 30000)))
+                    } label: {
+                        Map(position: $position) {
+                            Annotation(
+                                predator.name,
+                                coordinate: predator.location) {
+                                    Image(systemName: "mappin.and.ellipse")
+                                        .font(.largeTitle)
+                                        .imageScale(.large)
+                                        .symbolEffect(.pulse)
+                                }
+                                .annotationTitles(.hidden)
+                        }
+                        .frame(height: 125)
+                        .clipShape(.rect(cornerRadius: 15))
+                        .overlay(alignment: .trailing) {
+                            Image(systemName: "greaterthan")
+                                .imageScale(.large)
+                                .font(.title3)
+                                .padding(.trailing, 10)
+                        }
+                        .overlay(alignment: .topLeading) {
+                            Text("Current Location")
+                                .padding([.leading, .bottom], 5)
+                                .padding(.trailing, 8)
+                                .background(.black.opacity(0.33))
+                                .clipShape(.rect(bottomTrailingRadius: 15))
+                        }
                     }
-                    .frame(height: 125)
-                    .clipShape(.rect(cornerRadius: 15))
                     
                     //MARK: Appears In
                     Text("Appears in: ")
@@ -101,10 +122,13 @@ struct PredatorDetail: View {
             }
             .ignoresSafeArea()
         }
+        .toolbarBackground(.automatic)
     }
 }
 
 #Preview {
-    PredatorDetail(predator: Predators().apexPredators[2], position: .camera(MapCamera(centerCoordinate: Predators().apexPredators[2].location, distance: 30000)))
-        .preferredColorScheme(.dark)
+    NavigationStack {
+        PredatorDetail(predator: Predators().apexPredators[2], position: .camera(MapCamera(centerCoordinate: Predators().apexPredators[2].location, distance: 30000)))
+            .preferredColorScheme(.dark)
+    }
 }

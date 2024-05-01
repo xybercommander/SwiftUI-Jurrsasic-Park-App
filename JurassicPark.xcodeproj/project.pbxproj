@@ -15,6 +15,7 @@
 		0305C3822BD78306005D9308 /* ApexPredator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0305C3812BD78306005D9308 /* ApexPredator.swift */; };
 		0305C3842BD7860F005D9308 /* Predators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0305C3832BD7860F005D9308 /* Predators.swift */; };
 		039BBDBA2BDE392D00B8237B /* PredatorDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039BBDB92BDE392D00B8237B /* PredatorDetail.swift */; };
+		039BBDBC2BDED83000B8237B /* PredatorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039BBDBB2BDED83000B8237B /* PredatorMap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		0305C3812BD78306005D9308 /* ApexPredator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApexPredator.swift; sourceTree = "<group>"; };
 		0305C3832BD7860F005D9308 /* Predators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predators.swift; sourceTree = "<group>"; };
 		039BBDB92BDE392D00B8237B /* PredatorDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredatorDetail.swift; sourceTree = "<group>"; };
+		039BBDBB2BDED83000B8237B /* PredatorMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredatorMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +63,13 @@
 			children = (
 				0305C36F2BD7807F005D9308 /* JurassicParkApp.swift */,
 				0305C3712BD7807F005D9308 /* ContentView.swift */,
-				0305C37D2BD78189005D9308 /* jpapexpredators.json */,
-				0305C3732BD78080005D9308 /* Assets.xcassets */,
-				0305C3752BD78080005D9308 /* Preview Content */,
 				0305C3812BD78306005D9308 /* ApexPredator.swift */,
 				0305C3832BD7860F005D9308 /* Predators.swift */,
 				039BBDB92BDE392D00B8237B /* PredatorDetail.swift */,
+				039BBDBB2BDED83000B8237B /* PredatorMap.swift */,
+				0305C37D2BD78189005D9308 /* jpapexpredators.json */,
+				0305C3732BD78080005D9308 /* Assets.xcassets */,
+				0305C3752BD78080005D9308 /* Preview Content */,
 			);
 			path = JurassicPark;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0305C3822BD78306005D9308 /* ApexPredator.swift in Sources */,
+				039BBDBC2BDED83000B8237B /* PredatorMap.swift in Sources */,
 				0305C3722BD7807F005D9308 /* ContentView.swift in Sources */,
 				039BBDBA2BDE392D00B8237B /* PredatorDetail.swift in Sources */,
 				0305C3842BD7860F005D9308 /* Predators.swift in Sources */,
